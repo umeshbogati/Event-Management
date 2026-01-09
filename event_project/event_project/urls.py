@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from rest_framework.authtoken.views import obtain_auth_token
 
 
 urlpatterns = [
@@ -24,4 +25,7 @@ urlpatterns = [
     path('', include('events.urls')),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
+    path('api/', include('events.api_urls')),
+    path('api/login/', obtain_auth_token),
 ]
